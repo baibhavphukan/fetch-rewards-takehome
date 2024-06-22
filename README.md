@@ -93,8 +93,9 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 
 - The JSON messages from the SQS queue have consistent fields (`user_id`, `device_type`, `ip`, `device_id`, `locale`, `app_version`, `create_date`).
 - Docker and Docker Compose are used for local development and testing.
-- The PostgreSQL database schema (`user_logins`) and necessary tables are pre-created as described in the Docker setup.
-- The application will run on a local development environment with Docker and required dependencies installed. Although the python script handles in case there is no table created initially
+- The PostgreSQL database schema (`user_logins`) and necessary tables are pre-created as described in the Docker setup. 
+  Although the python script handles in case there is no table created initially
+- The application will run on a local development environment with Docker and required dependencies installed. 
 
 
 ---
