@@ -33,9 +33,24 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 4. **Run the ETL script:**
    - Ensure Docker containers are running.
    - Open a new terminal or command prompt.
+     
     ```sh
     python etl.py
     ```
+    - The script will read messages from the SQS queue, transform them by masking PII, and then write the transformed data 
+      to the PostgreSQL database.
+      
+## Verifying Data in PostgreSQL
+
+1. **Connect to the PostgreSQL database:**
+   ```sh
+    psql -d postgres -U postgres -p 5432 -h localhost -W
+    ```
+2. **Run the following SQL query to view inserted data:**
+   ```sh
+   SELECT * FROM user_logins;
+   ```
+   
 
 ## Details
 
