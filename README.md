@@ -1,14 +1,23 @@
 # Fetch Rewards Data Engineering Take Home: ETL off a SQS Queue
 
-## Overview
-This project reads JSON data containing user login behavior from an AWS SQS Queue, masks PII fields, and writes the transformed data to a Postgres database.
+# Fetch Rewards ETL Project
+
+This project demonstrates an ETL (Extract, Transform, Load) process that reads JSON data from an AWS SQS Queue, masks PII (Personally Identifiable Information) data, and writes the transformed data into a PostgreSQL database. Docker is used to run all components locally.
+
+## Setup Instructions
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Python 3.7+
+- Git
 
 ## Setup
 
 1. **Clone the repository:**
     ```sh
-    git clone <your-repo-url>
-    cd <repo-name>
+    git clone https://github.com/baibhavphukan/fetch-rewards-takehome.git
+    cd fetch-rewards-takehome
     ```
 
 2. **Start Docker services:**
@@ -22,6 +31,8 @@ This project reads JSON data containing user login behavior from an AWS SQS Queu
     ```
 
 4. **Run the ETL script:**
+   - Ensure Docker containers are running.
+   - Open a new terminal or command prompt.
     ```sh
     python etl.py
     ```
