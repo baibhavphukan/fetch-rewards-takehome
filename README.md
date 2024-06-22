@@ -11,6 +11,7 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 - Docker and Docker Compose
 - Python 3.7+
 - Git
+- Postgres
 
 ## Setup
 
