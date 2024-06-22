@@ -62,19 +62,44 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 - The SQS queue and Postgres database are available locally as described in the Docker setup.
 - The table `user_logins` is pre-created in the Postgres database.
 
-## Next Steps
-- Implement error handling and retries for reading from SQS and writing to Postgres.
-- Add logging for better monitoring and debugging.
-- Consider using environment variables for configuration.
+## Questions
 
-## Deployment
-- This application can be containerized using Docker for consistent deployment across environments.
-- For production, consider using AWS services like RDS for Postgres and SQS directly.
+### How would you deploy this application in production?
 
-## Scaling
-- For a growing dataset, use batch processing and potentially partition the Postgres table for performance.
-- Consider using AWS Lambda for automatic scaling with SQS triggers.
+- **Deployment Strategy:** Deploy using a managed Kubernetes service (e.g., Amazon EKS, Google Kubernetes Engine) for container orchestration and scalability.
+- **Database:** Utilize managed PostgreSQL services such as Amazon RDS or Google Cloud SQL for reliability, scalability, and automated backups.
+- **CI/CD:** Implement CI/CD pipelines (e.g., GitLab CI/CD, GitHub Actions) for automated testing, building Docker images, and deployment to production.
+- **Security:** Secure sensitive data using environment variables or secrets management tools. Implement encryption for data at rest and in transit.
 
-## PII Recovery
-- Store original PII data in a secure, encrypted data store if recovery is necessary. Access should be strictly controlled.
+### What other components would you want to add to make this production ready?
+
+- **Logging and Monitoring:** Implement logging (e.g., using ELK stack) and monitoring (e.g., Prometheus, Grafana) for application health and performance.
+- **Error Handling:** Enhance error handling and retry mechanisms to handle network issues, database failures, and data processing errors gracefully.
+- **Performance Optimization:** Optimize database queries and indexing. Consider caching strategies (e.g., Redis) for improved performance.
+- **Security:** Implement role-based access control (RBAC) for database and application access. Ensure compliance with data protection regulations (e.g., GDPR, HIPAA).
+- **Backup and Recovery:** Set up automated backups for databases and implement disaster recovery plans to ensure data integrity and availability.
+
+### How can this application scale with a growing dataset?
+
+- **Scaling Strategy:** Scale horizontally by adding more Docker containers using Kubernetes or Docker Swarm to handle increased message throughput.
+- **Database Scaling:** Implement partitioning strategies in PostgreSQL to distribute data across multiple nodes and improve query performance.
+- **Cloud Services:** Utilize cloud-native services like Amazon SQS for message queuing and Amazon RDS for scalable PostgreSQL deployments.
+- **Performance Monitoring:** Monitor system metrics (e.g., CPU, memory usage) and scale resources dynamically based on workload demands.
+
+### How can PII be recovered later on?
+
+- **PII Recovery Strategy:** Store original PII data securely in an encrypted data store. Maintain a mapping mechanism linking masked values in the database to original PII data for recovery purposes.
+- **Access Controls:** Implement strict access controls and auditing mechanisms to track access to sensitive data and ensure compliance with data privacy regulations.
+
+### What are the assumptions you made?
+
+- The JSON messages from the SQS queue have consistent fields (`user_id`, `device_type`, `ip`, `device_id`, `locale`, `app_version`, `create_date`).
+- Docker and Docker Compose are used for local development and testing.
+- The PostgreSQL database schema (`user_logins`) and necessary tables are pre-created as described in the Docker setup.
+- The application will run on a local development environment with Docker and required dependencies installed.
+
+---
+
+
+
 
