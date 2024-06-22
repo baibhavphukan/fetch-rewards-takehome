@@ -58,25 +58,22 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 - **Database Connection:** The application connects to a Postgres database using `psycopg2`.
 - **Data Transformation:** The JSON data is flattened and PII fields are masked.
 
-## Assumptions
-- The SQS queue and Postgres database are available locally as described in the Docker setup.
-- The table `user_logins` is pre-created in the Postgres database.
 
 ## Questions
 
 ### How would you deploy this application in production?
 
-- **Deployment Strategy:** Deploy using a managed Kubernetes service (e.g., Amazon EKS, Google Kubernetes Engine) for container orchestration and scalability.
+- **Deployment Strategy:** Deploy using a managed Kubernetes service such as Amazon EKS, Google Kubernetes Engine for container orchestration and scalability.
 - **Database:** Utilize managed PostgreSQL services such as Amazon RDS or Google Cloud SQL for reliability, scalability, and automated backups.
-- **CI/CD:** Implement CI/CD pipelines (e.g., GitLab CI/CD, GitHub Actions) for automated testing, building Docker images, and deployment to production.
+- **CI/CD:** Implement CI/CD pipelines (e.g. GitLab CI/CD, GitHub Actions) for automated testing, building Docker images, and deployment to production.
 - **Security:** Secure sensitive data using environment variables or secrets management tools. Implement encryption for data at rest and in transit.
 
 ### What other components would you want to add to make this production ready?
 
-- **Logging and Monitoring:** Implement logging (e.g., using ELK stack) and monitoring (e.g., Prometheus, Grafana) for application health and performance.
+- **Logging and Monitoring:** Implement logging using something, for instance, ELK stack and monitoring (e.g Prometheus, Grafana) for application health and performance.
 - **Error Handling:** Enhance error handling and retry mechanisms to handle network issues, database failures, and data processing errors gracefully.
-- **Performance Optimization:** Optimize database queries and indexing. Consider caching strategies (e.g., Redis) for improved performance.
-- **Security:** Implement role-based access control (RBAC) for database and application access. Ensure compliance with data protection regulations (e.g., GDPR, HIPAA).
+- **Performance Optimization:** Optimize database queries and indexing. Consider caching strategies (e.g Redis) for improved performance.
+- **Security:** Implement role-based access control (RBAC) for database and application access. Ensure compliance with data protection regulations such as GDPR, HIPAA etc.
 - **Backup and Recovery:** Set up automated backups for databases and implement disaster recovery plans to ensure data integrity and availability.
 
 ### How can this application scale with a growing dataset?
@@ -84,7 +81,7 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 - **Scaling Strategy:** Scale horizontally by adding more Docker containers using Kubernetes or Docker Swarm to handle increased message throughput.
 - **Database Scaling:** Implement partitioning strategies in PostgreSQL to distribute data across multiple nodes and improve query performance.
 - **Cloud Services:** Utilize cloud-native services like Amazon SQS for message queuing and Amazon RDS for scalable PostgreSQL deployments.
-- **Performance Monitoring:** Monitor system metrics (e.g., CPU, memory usage) and scale resources dynamically based on workload demands.
+- **Performance Monitoring:** Monitor system metrics like CPU, memory usage etc. and scale resources dynamically based on workload demands.
 
 ### How can PII be recovered later on?
 
@@ -96,7 +93,8 @@ This project demonstrates an ETL (Extract, Transform, Load) process that reads J
 - The JSON messages from the SQS queue have consistent fields (`user_id`, `device_type`, `ip`, `device_id`, `locale`, `app_version`, `create_date`).
 - Docker and Docker Compose are used for local development and testing.
 - The PostgreSQL database schema (`user_logins`) and necessary tables are pre-created as described in the Docker setup.
-- The application will run on a local development environment with Docker and required dependencies installed.
+- The application will run on a local development environment with Docker and required dependencies installed. Although the python script handles in case there is no table created initially
+
 
 ---
 
